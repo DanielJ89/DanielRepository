@@ -17,7 +17,7 @@ public class Server {
     /**
      * ROOT_CATALOG should be without C: in a mac
      */
-    private static final String ROOT_CATALOG = "C:/HttpDirectory.html";
+    private static final String ROOT_CATALOG = "./src/data";
     static int port = 8080;
     float firstNumber;
     float secondNumber;
