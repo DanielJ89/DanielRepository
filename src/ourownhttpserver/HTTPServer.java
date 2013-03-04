@@ -20,7 +20,7 @@ public class HTTPServer{
      * ROOT_CATALOG should be without C: in a mac
      */
     private static final String ROOT_CATALOG = "./src/data";
-    private static int port = 8080;
+    public static int port = 8080;
   
 
     /**
