@@ -14,6 +14,10 @@ public class ServerTest {
   private static final String CRLF = "\r\n";
   private static final String Host = "localhost";
 
+  /**
+   * test the response of what happens if the file does exist
+   * @throws IOException 
+   */
   @Test
   public void testResponseOK() throws IOException {
     final Socket client = new Socket(Host, HTTPServer.port);
@@ -27,7 +31,10 @@ public class ServerTest {
     assertEquals("HTTP/1.0 200 FINE", statusLine);
     client.close();
   }
-
+ /**
+  * test the response of what happens if the file does not exist
+  * @throws IOException 
+  */
  @Test
   public void testResponseNotOK() throws IOException {
     final Socket client = new Socket(Host, HTTPServer.port);

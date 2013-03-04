@@ -15,9 +15,9 @@ import java.util.Scanner;
  * @author Daniel Jensen
  */
 public class HTTPServer{
-
     /**
-     * ROOT_CATALOG should be without C: in a mac
+     * ROOT_CATALOG is the place of our file
+     * port is the port number the server listens
      */
     private static final String ROOT_CATALOG = "./src/data";
     public static int port = 8080;
@@ -25,8 +25,9 @@ public class HTTPServer{
 
     /**
      *
-     * @param args
+     * @param args 
      * @throws IOException
+     * the socket "sSocket" is the server socket
      */
     public static void main(final String[] args) throws IOException {
 
@@ -39,9 +40,11 @@ public class HTTPServer{
     }
 
     /**
-     *
-     * @param sSocket
+     * the server takes the clients input (accepts the clients socket)
+     * @param sSocket the servers socket
+     * @param clientSocket the clients socket
      * @throws IOException
+     * @throws FileNotFoundExeption if the requisted filename does not exist
      */
     private static void handleClient(final ServerSocket sSocket) throws IOException {
         final Socket clientSocket = sSocket.accept();
