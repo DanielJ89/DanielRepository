@@ -12,16 +12,16 @@ import java.util.Scanner;
  *
  * @author Daniel Jensen
  */
-public class Server {
+public class HTTPServer {
     
     /**
      * ROOT_CATALOG should be without C: in a mac
      */
     private static final String ROOT_CATALOG = "./src/data";
     static int port = 8080;
-    float firstNumber;
-    float secondNumber;
-    float echhoLine;
+    int firstNumber;
+    int secondNumber;
+    int echhoLine;
 
     /**
      * 
@@ -53,10 +53,10 @@ public class Server {
         while (fromClient.hasNextLine()) {
 
             String method = fromClient.next();
-            float firstNumber = fromClient.nextFloat();
-            float secondNumber = fromClient.nextFloat();
-            float echhoLine = firstNumber / secondNumber;
-            toClient.println(echhoLine);
+            String url = fromClient.next();
+            String version = fromClient.next();
+            toClient.println("HTTP/1.0 200 FINE");
+            toClient.println();
             toClient.flush();
 
         }
