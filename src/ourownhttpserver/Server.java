@@ -13,13 +13,21 @@ import java.util.Scanner;
  * @author Daniel Jensen
  */
 public class Server {
-
-    private static final String ROOT_CATALOG = "C:/file.html";
-    static int port = 80;
+    
+    /**
+     * ROOT_CATALOG should be without C: in a mac
+     */
+    private static final String ROOT_CATALOG = "C:/HttpDirectory.html";
+    static int port = 8080;
     float firstNumber;
     float secondNumber;
     float echhoLine;
 
+    /**
+     * 
+     * @param args
+     * @throws IOException 
+     */
     public static void main(final String[] args) throws IOException {
 
         ServerSocket sSocket = new ServerSocket(port);
@@ -29,7 +37,11 @@ public class Server {
         }
 
     }
-
+    /**
+     * 
+     * @param sSocket
+     * @throws IOException 
+     */
     private static void handleClient(ServerSocket sSocket) throws IOException {
         Socket clientSocket = sSocket.accept();
         InputStream iStream = clientSocket.getInputStream();
@@ -50,7 +62,12 @@ public class Server {
         }
         clientSocket.close();
     }
-
+    /**
+     * 
+     * @param input
+     * @param output
+     * @throws IOException 
+     */
     private static void copy(final InputStream input, final OutputStream output) throws IOException {
         final byte[] buffer = new byte[1024];
         while (true) {
