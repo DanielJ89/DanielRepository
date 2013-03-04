@@ -48,7 +48,16 @@ public class Server {
             toClient.flush();
 
         }
-
         clientSocket.close();
     }
-}
+     private static void copy(final InputStream input, final OutputStream output) throws IOException {
+        final byte[] buffer = new byte[1024];
+        while (true) {
+            int bytesRead = input.read(buffer);
+            if (bytesRead == -1) { break; }
+            output.write(buffer, 0, bytesRead);
+        }
+    }
+
+        
+    }
