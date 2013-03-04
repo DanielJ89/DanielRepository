@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class Server {
 
     private static final String ROOT_CATALOG = "C:/file.html";
-    static int port = 80;
+    static int port = 8080;
     float firstNumber;
     float secondNumber;
     float echhoLine;

@@ -4,9 +4,9 @@
  */
 package ourownhttpserver;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import static org.junit.Assert.*;
 
 /**
  *
@@ -19,6 +19,8 @@ public class ServerTest {
     
     @Before
     public void setUp() {
+        
+        
     }
 
     /**
@@ -27,4 +29,13 @@ public class ServerTest {
     @Test
     public void testMain() throws Exception {
     }
+    
+    
+    
+    @After
+    public void closeconnection() throws Exception {
+        
+    }
+    
 }
+
