@@ -20,7 +20,7 @@ public class ServerTest {
    */
   @Test
   public void testResponseOK() throws IOException {
-    final Socket client = new Socket(Host, HTTPServer.port);
+    final Socket client = new Socket(Host, Runner.port);
 
     final OutputStream output = client.getOutputStream();
     output.write(("GET /File.html HTTP/1.0" + CRLF + CRLF).getBytes());
@@ -37,7 +37,7 @@ public class ServerTest {
   */
  @Test
   public void testResponseNotOK() throws IOException {
-    final Socket client = new Socket(Host, HTTPServer.port);
+    final Socket client = new Socket(Host, Runner.port);
 
     final OutputStream output = client.getOutputStream();
     output.write(("GET /doesNotExist.html HTTP/1.0" + CRLF + CRLF).getBytes());
@@ -51,7 +51,7 @@ public class ServerTest {
 
  // @Test
   public void testIllegalProtocol() throws IOException {
-    final Socket client = new Socket(Host, HTTPServer.port);
+    final Socket client = new Socket(Host, Runner.port);
 
     final OutputStream output = client.getOutputStream();
     output.write(("GET /doesNotExist.html" + CRLF + CRLF).getBytes());
@@ -65,7 +65,7 @@ public class ServerTest {
 
  // @Test
   public void testMissingProtocol() throws IOException {
-    final Socket client = new Socket(Host, HTTPServer.port);
+    final Socket client = new Socket(Host, Runner.port);
 
     final OutputStream output = client.getOutputStream();
     output.write(("GET /doesNotExist.html HTTP 1.0" + CRLF + CRLF).getBytes());
@@ -79,7 +79,7 @@ public class ServerTest {
 
  // @Test
   public void testNotImplemented() throws IOException {
-    final Socket client = new Socket(Host, HTTPServer.port);
+    final Socket client = new Socket(Host, Runner.port);
 
     final OutputStream output = client.getOutputStream();
     output.write(("PUT /doesNotExist.html HTTP/1.0" + CRLF + CRLF).getBytes());
