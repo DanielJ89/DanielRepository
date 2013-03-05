@@ -27,17 +27,14 @@ public class Runner implements Runnable {
      * ROOT_CATALOG is the place of our file port is the port number the server
      * listens
      */
-    public Runner(Socket clientSocket) {
+    public Runner(final Socket clientSocket) {
         this.clientSocket = clientSocket;
-
-
     }
-
+    
     @Override
     public void run() {
         try {
             final InputStream iStream = clientSocket.getInputStream();
-
             final OutputStream oSteam = clientSocket.getOutputStream();
 
             final PrintWriter toClient = new PrintWriter(clientSocket.getOutputStream());
