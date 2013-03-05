@@ -19,6 +19,8 @@ import org.omg.SendingContext.RunTime;
  */
 public class Runner implements Runnable {
 
+    public static final Logger ADVANCEDLOGGER = Logger.getLogger("Advanced");
+    public static final Logger SIMPLELOGGER = Logger.getLogger("Simple");
     public static final String ROOT_CATALOG = "./src/data";
     public static int port = 8080;
     final private Socket clientSocket;
@@ -44,21 +46,26 @@ public class Runner implements Runnable {
             final String method = fromClient.next();
             final String url = fromClient.next();
             final String version = fromClient.next();
-
+            ADVANCEDLOGGER.log(Level.INFO, "A Client has made a request");
+            SIMPLELOGGER.log(Level.INFO, "A Client has made a request");
             try {
                 final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
                 toClient.println("HTTP/1.0 200 FINE");
                 toClient.println();
                 toClient.flush();
+                ADVANCEDLOGGER.log(Level.INFO, "The Client has recived its information");
+                SIMPLELOGGER.log(Level.INFO, "The Client has recived its information");
             } catch (FileNotFoundException ex) {
                 toClient.println("HTTP/1.0 404 Not found: /doesNotExist.html");
                 toClient.println();
                 toClient.flush();
+                ADVANCEDLOGGER.log(Level.SEVERE, "The request caused a FileNotFoundException");
+                SIMPLELOGGER.log(Level.INFO, "The request caused a FileNotFoundException");
             }
 
             clientSocket.close();
         } catch (IOException ex) {
-            Logger.getLogger(Runner.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Runner.class.getName()).log(Level.SEVERE, "An IOExeption has occured", ex);
         }
     }
 
