@@ -10,8 +10,10 @@ import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
-public class HTTPServer {
+public class HTTPServer{
 
     public static final String ROOT_CATALOG = "./src/data";
     public static int port = 8080;
@@ -41,30 +43,41 @@ public class HTTPServer {
      */
     private static void handleClient(final ServerSocket sSocket) throws IOException {
         final Socket clientSocket = sSocket.accept();
-        final InputStream iStream = clientSocket.getInputStream();
-        final OutputStream oSteam = clientSocket.getOutputStream();
-
-        final PrintWriter toClient = new PrintWriter(clientSocket.getOutputStream());
-        final Scanner fromClient = new Scanner(clientSocket.getInputStream());
-
-
-        final String method = fromClient.next();
-        final String url = fromClient.next();
-        final String version = fromClient.next();
-
-        try {
-            final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
-            toClient.println("HTTP/1.0 200 FINE");
-            toClient.println();
-            toClient.flush();
-        } catch (FileNotFoundException ex) {
-            toClient.println("HTTP/1.0 404 Not found: /doesNotExist.html");
-            toClient.println();
-            toClient.flush();
+        
+        ExecutorService pool = Executors.newCachedThreadPool();
+        
+        while (true){
+        Runnable Runner = new Runner(clientSocket, clientSocket);
+        imAPool = pool.submit(Runner);
+        
+        pool.shutdown();
         }
 
-        clientSocket.close();
-    }
+       
+//        final InputStream iStream = clientSocket.getInputStream();
+//        final OutputStream oSteam = clientSocket.getOutputStream();
+//
+//        final PrintWriter toClient = new PrintWriter(clientSocket.getOutputStream());
+//        final Scanner fromClient = new Scanner(clientSocket.getInputStream());
+//
+//
+//        final String method = fromClient.next();
+//        final String url = fromClient.next();
+//        final String version = fromClient.next();
+//
+//        try {
+//            final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
+//            toClient.println("HTTP/1.0 200 FINE");
+//            toClient.println();
+//            toClient.flush();
+//        } catch (FileNotFoundException ex) {
+//            toClient.println("HTTP/1.0 404 Not found: /doesNotExist.html");
+//            toClient.println();
+//            toClient.flush();
+//        }
+//
+//        clientSocket.close();
+//    }
 
     /**
      *
@@ -72,14 +85,5 @@ public class HTTPServer {
      * @param output
      * @throws IOException
      */
-    private static void copy(final InputStream input, final OutputStream output) throws IOException {
-        final byte[] buffer = new byte[1024];
-        while (true) {
-            int bytesRead = input.read(buffer);
-            if (bytesRead == -1) {
-                break;
-            }
-            output.write(buffer, 0, bytesRead);
-        }
-    }
+}
 }
