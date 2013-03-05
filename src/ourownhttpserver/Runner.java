@@ -8,83 +8,25 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.Arrays;
 import java.util.Scanner;
+import org.omg.SendingContext.RunTime;
 
-public class Runner{
-    
-    public static final String ROOT_CATALOG = "./src/data";
-    public static int port = 8080;
-    
-        /**
-     *
-     * @param args 
-     * @throws IOException
-     * the socket "sSocket" is the server socket
-     */
-    public static void main(final String[] args) throws IOException {
-
-       final ServerSocket sSocket = new ServerSocket(port);
-
-        while (true) {
-            handleClient(sSocket);
-        }
-
-    }
+/**
+ *
+ * @author Daniel Jensen
+ */
+public class Runner implements Runnable{
     /**
-     * the server takes the clients input (accepts the clients socket)
-     * @param sSocket the servers socket
-     * @param clientSocket the clients socket
-     * @throws IOException
-     * @throws FileNotFoundExeption if the requisted filename does not exist
+     * ROOT_CATALOG is the place of our file
+     * port is the port number the server listens
      */
-    
-    public Runner(){
-        
-    }
-    
-    private static void handleClient(final ServerSocket sSocket) throws IOException {
-        final Socket clientSocket = sSocket.accept();
-        final InputStream iStream = clientSocket.getInputStream();
-        final OutputStream oSteam = clientSocket.getOutputStream();
+    @Override
+    public void run() {
+        final Runnable Runner = new Runner();
+        Thread thread = new Thread(Runner);
+        Thread thread1 = new Thread(Runner);
 
-        final PrintWriter toClient = new PrintWriter(clientSocket.getOutputStream());
-        final Scanner fromClient = new Scanner(clientSocket.getInputStream());
-
-
-        final String method = fromClient.next();
-        final String url = fromClient.next();
-        final String version = fromClient.next();
-
-        try {
-            final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
-            toClient.println("HTTP/1.0 200 FINE");
-            toClient.println();
-            toClient.flush();
-        } catch (FileNotFoundException ex) {
-            toClient.println("HTTP/1.0 404 Not found: /doesNotExist.html");
-            toClient.println();
-            toClient.flush();
-        }
-
-
-        clientSocket.close();
-    }
-
-    /**
-     *
-     * @param input
-     * @param output
-     * @throws IOException
-     */
-    private static void copy(final InputStream input, final OutputStream output) throws IOException {
-        final byte[] buffer = new byte[1024];
-        while (true) {
-            int bytesRead = input.read(buffer);
-            if (bytesRead == -1) {
-                break;
-            }
-            output.write(buffer, 0, bytesRead);
-        }
+        thread.start();
+        thread1.start();
     }
 }
