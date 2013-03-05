@@ -35,7 +35,7 @@ public class HTTPServer {
         SIMPLELOGGER.log(Level.INFO, "The server has started");
         while (true) {
             final Socket clientSocket = sSocket.accept();
-            final Runnable Runner = new Runner(clientSocket);
+            final Runnable Runner = new Reciver(clientSocket);
             pool.execute(Runner);
 ////           handleClient(sSocket);
             ADVANCEDLOGGER.log(Level.INFO, "new thread has been created");
