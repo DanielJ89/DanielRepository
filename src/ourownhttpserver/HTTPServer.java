@@ -26,32 +26,21 @@ public class HTTPServer{
     public static void main(final String[] args) throws IOException {
 
         final ServerSocket sSocket = new ServerSocket(port);
-
-        while (true) {
-            handleClient(sSocket);
-        }
-
-    }
-
-    /**
-     * the server takes the clients input (accepts the clients socket)
-     *
-     * @param sSocket the servers socket
-     * @param clientSocket the clients socket
-     * @throws IOException
-     * @throws FileNotFoundExeption if the requisted filename does not exist
-     */
-    private static void handleClient(final ServerSocket sSocket) throws IOException {
-        final Socket clientSocket = sSocket.accept();
+         
         
         ExecutorService pool = Executors.newCachedThreadPool();
         
-        while (true){
-        Runnable Runner = new Runner(clientSocket, clientSocket);
-        imAPool = pool.submit(Runner);
-        
-        pool.shutdown();
+
+        while (true) {
+             final Socket clientSocket = sSocket.accept();
+             Runnable Runner = new Runner(clientSocket);
+             pool.execute(Runner);
+////           handleClient(sSocket);
         }
+//      pool.shutdown();
+    }
+}
+   
 
        
 //        final InputStream iStream = clientSocket.getInputStream();
@@ -78,12 +67,3 @@ public class HTTPServer{
 //
 //        clientSocket.close();
 //    }
-
-    /**
-     *
-     * @param input
-     * @param output
-     * @throws IOException
-     */
-}
-}
