@@ -50,7 +50,7 @@ public class ServerTest {
   }
 
  // @Test
-  public void testIllegalProtocol() throws IOException {
+    public void testIllegalProtocol() throws IOException {
     final Socket client = new Socket(Host, HTTPServer.port);
 
     final OutputStream output = client.getOutputStream();
