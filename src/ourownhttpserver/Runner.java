@@ -11,6 +11,7 @@ import java.net.Socket;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.activation.MimetypesFileTypeMap;
 import org.omg.SendingContext.RunTime;
 
 /**
@@ -24,7 +25,7 @@ public class Runner implements Runnable {
     public static final String ROOT_CATALOG = "./src/data";
     public static int port = 8080;
     final private Socket clientSocket;
-
+   
     /**
      * ROOT_CATALOG is the place of our file port is the port number the server
      * listens
@@ -37,13 +38,15 @@ public class Runner implements Runnable {
     @Override
     public void run() {
         try {
+            final FileInputStream fis2 = new FileInputStream("C:\\Users\\Daniel Jensen\\mimetypes");
             final InputStream iStream = clientSocket.getInputStream();
             final OutputStream oSteam = clientSocket.getOutputStream();
 
             final PrintWriter toClient = new PrintWriter(clientSocket.getOutputStream());
             final Scanner fromClient = new Scanner(clientSocket.getInputStream());
 
-
+            final MimetypesFileTypeMap mTFTMap = new MimetypesFileTypeMap(fis2);
+            
             final String method = fromClient.next();
             final String url = fromClient.next();
             final String version = fromClient.next();
@@ -52,6 +55,8 @@ public class Runner implements Runnable {
             try {
                 final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
                 toClient.print("HTTP/1.0 200 FINE\r\n");
+                toClient.print("Content-Type: "+ mTFTMap.getContentType(url));
+ 
                 // her skal content type være
                 toClient.print("\r\n");
                 toClient.flush();

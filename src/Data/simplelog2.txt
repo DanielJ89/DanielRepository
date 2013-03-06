@@ -1,14 +1,4 @@
-mar 05, 2013 11:34:46 AM ourownhttpserver.HTTPServer main
+mar 06, 2013 10:15:38 AM ourownhttpserver.HTTPServer main
 INFO: The server has started
-mar 05, 2013 11:34:55 AM ourownhttpserver.HTTPServer main
+mar 06, 2013 10:15:40 AM ourownhttpserver.HTTPServer main
 INFO: new thread has been created
-mar 05, 2013 11:34:55 AM ourownhttpserver.Runner run
-INFO: A Client has made a request
-mar 05, 2013 11:34:55 AM ourownhttpserver.Runner run
-INFO: The Client has recived its information
-mar 05, 2013 11:34:55 AM ourownhttpserver.HTTPServer main
-INFO: new thread has been created
-mar 05, 2013 11:34:55 AM ourownhttpserver.Runner run
-INFO: A Client has made a request
-mar 05, 2013 11:34:55 AM ourownhttpserver.Runner run
-INFO: The request caused a FileNotFoundException

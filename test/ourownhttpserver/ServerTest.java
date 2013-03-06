@@ -1,9 +1,9 @@
 package ourownhttpserver;
 
-import java.net.*;
 import java.io.*;
-import org.junit.Test;
+import java.net.*;
 import static org.junit.Assert.*;
+import org.junit.Test;
 /**
  *
  * @author andersb
