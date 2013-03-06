@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2013-03-06T10:15:38</date>
-  <millis>1362561338029</millis>
+  <date>2013-03-06T11:04:05</date>
+  <millis>1362564245970</millis>
   <sequence>0</sequence>
   <logger>Advanced</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>The server has started</message>
 </record>
 <record>
-  <date>2013-03-06T10:15:40</date>
-  <millis>1362561340834</millis>
+  <date>2013-03-06T11:04:11</date>
+  <millis>1362564251265</millis>
   <sequence>2</sequence>
   <logger>Advanced</logger>
   <level>INFO</level>
@@ -22,4 +22,59 @@
   <method>main</method>
   <thread>1</thread>
   <message>new thread has been created</message>
+</record>
+<record>
+  <date>2013-03-06T11:04:11</date>
+  <millis>1362564251277</millis>
+  <sequence>4</sequence>
+  <logger>Advanced</logger>
+  <level>INFO</level>
+  <class>ourownhttpserver.Runner</class>
+  <method>run</method>
+  <thread>9</thread>
+  <message>A Client has made a request</message>
+</record>
+<record>
+  <date>2013-03-06T11:04:11</date>
+  <millis>1362564251282</millis>
+  <sequence>7</sequence>
+  <logger>Advanced</logger>
+  <level>INFO</level>
+  <class>ourownhttpserver.Runner</class>
+  <method>run</method>
+  <thread>9</thread>
+  <message>The Client has recived its information</message>
+</record>
+<record>
+  <date>2013-03-06T11:04:11</date>
+  <millis>1362564251286</millis>
+  <sequence>9</sequence>
+  <logger>Advanced</logger>
+  <level>INFO</level>
+  <class>ourownhttpserver.HTTPServer</class>
+  <method>main</method>
+  <thread>1</thread>
+  <message>new thread has been created</message>
+</record>
+<record>
+  <date>2013-03-06T11:04:11</date>
+  <millis>1362564251290</millis>
+  <sequence>11</sequence>
+  <logger>Advanced</logger>
+  <level>INFO</level>
+  <class>ourownhttpserver.Runner</class>
+  <method>run</method>
+  <thread>9</thread>
+  <message>A Client has made a request</message>
+</record>
+<record>
+  <date>2013-03-06T11:04:11</date>
+  <millis>1362564251292</millis>
+  <sequence>13</sequence>
+  <logger>Advanced</logger>
+  <level>SEVERE</level>
+  <class>ourownhttpserver.Runner</class>
+  <method>run</method>
+  <thread>9</thread>
+  <message>The request caused a FileNotFoundException</message>
 </record>

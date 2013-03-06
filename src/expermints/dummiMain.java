@@ -18,9 +18,9 @@ import javax.activation.MimetypesFileTypeMap;
 public class dummiMain {
 
     public static void main(String[] args) throws FileNotFoundException {
-    final FileInputStream fis = new FileInputStream("C:/Users/Daniel Jensen/mime.types");
+    final FileInputStream fis = new FileInputStream("C:/Users/Daniel Jensen/Desktop/mime.types.txt");
     final MimetypesFileTypeMap mFTMap = new MimetypesFileTypeMap(fis);
-        System.out.println(mFTMap.getContentType("lsakls.wee"));
+    System.out.println(mFTMap.getContentType("lsakls.html"));
     
     
 }

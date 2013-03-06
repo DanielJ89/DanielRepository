@@ -38,7 +38,7 @@ public class Runner implements Runnable {
     @Override
     public void run() {
         try {
-            final FileInputStream fis2 = new FileInputStream("C:\\Users\\Daniel Jensen\\mimetypes");
+            final FileInputStream fis2 = new FileInputStream("./src/data/mime.types.txt");
             final InputStream iStream = clientSocket.getInputStream();
             final OutputStream oSteam = clientSocket.getOutputStream();
 
@@ -56,7 +56,7 @@ public class Runner implements Runnable {
                 final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
                 toClient.print("HTTP/1.0 200 FINE\r\n");
                 toClient.print("Content-Type: "+ mTFTMap.getContentType(url));
- 
+                SIMPLELOGGER.log(Level.INFO,mTFTMap.getContentType(url));
                 // her skal content type være
                 toClient.print("\r\n");
                 toClient.flush();
