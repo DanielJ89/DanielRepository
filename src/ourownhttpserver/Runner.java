@@ -51,14 +51,15 @@ public class Runner implements Runnable {
             SIMPLELOGGER.log(Level.INFO, "A Client has made a request");
             try {
                 final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
-                toClient.println("HTTP/1.0 200 FINE");
-                toClient.println();
+                toClient.print("HTTP/1.0 200 FINE\r\n");
+                // her skal content type være
+                toClient.print("\r\n");
                 toClient.flush();
                 ADVANCEDLOGGER.log(Level.INFO, "The Client has recived its information");
                 SIMPLELOGGER.log(Level.INFO, "The Client has recived its information");
             } catch (FileNotFoundException ex) {
-                toClient.println("HTTP/1.0 404 Not found: /doesNotExist.html");
-                toClient.println();
+                toClient.print("HTTP/1.0 404 Not found: /doesNotExist.html\r\n");
+                toClient.print("\r\n");
                 toClient.flush();
                 ADVANCEDLOGGER.log(Level.SEVERE, "The request caused a FileNotFoundException");
                 SIMPLELOGGER.log(Level.INFO, "The request caused a FileNotFoundException");
