@@ -13,17 +13,21 @@ import java.util.logging.SimpleFormatter;
 import java.util.logging.XMLFormatter;
 
 public class HTTPServer {
+
     static long startTime = System.currentTimeMillis();
     static long elapsedTime = 0L;
     public static final String ROOT_CATALOG = "./src/data";
     public static int port = 8080;
-    public static int closeport = 8081;
     public static final Logger ADVANCEDLOGGER = Logger.getLogger("Advanced");
     public static final Logger SIMPLELOGGER = Logger.getLogger("Simple");
+
     /**
      *
      * @param args
      * @throws IOException the socket "sSocket" is the server socket
+     * Creates 2 Handlers 
+     * Server starts
+     * @while Creates runner threads as long as the elpased time is less than 10 seconds
      */
     public static void main(final String[] args) throws IOException {
         FileHandler fHandler = new FileHandler("./src/data/advancedlog.txt");
@@ -36,23 +40,18 @@ public class HTTPServer {
 
         ADVANCEDLOGGER.log(Level.INFO, "The server has started");
         SIMPLELOGGER.log(Level.INFO, "The server has started");
-        while (elapsedTime < 10*1000) {
+        while (elapsedTime < 10 * 1000) {
             elapsedTime = (new Date()).getTime() - startTime;
             final Socket clientSocket = sSocket.accept();
             final Runnable Runner = new Runner(clientSocket);
             pool.execute(Runner);
-            
+
 ////        handleClient(sSocket);
             ADVANCEDLOGGER.log(Level.INFO, "new thread has been created");
             SIMPLELOGGER.log(Level.INFO, "new thread has been created");
-            
+
         }
-         pool.shutdown();
-         
-  
-    }
-    public static void shutdown(int closeport,ExecutorService pool){
         pool.shutdown();
-        
+        sSocket.close();
     }
 }

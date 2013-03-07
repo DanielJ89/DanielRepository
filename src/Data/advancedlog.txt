@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2013-03-07T10:26:16</date>
-  <millis>1362648376783</millis>
+  <date>2013-03-07T13:31:00</date>
+  <millis>1362659460667</millis>
   <sequence>0</sequence>
   <logger>Advanced</logger>
   <level>INFO</level>
@@ -13,20 +13,9 @@
   <message>The server has started</message>
 </record>
 <record>
-  <date>2013-03-07T10:26:21</date>
-  <millis>1362648381598</millis>
+  <date>2013-03-07T13:31:26</date>
+  <millis>1362659486345</millis>
   <sequence>2</sequence>
-  <logger>Advanced</logger>
-  <level>INFO</level>
-  <class>ourownhttpserver.HTTPServer</class>
-  <method>main</method>
-  <thread>1</thread>
-  <message>new thread has been created</message>
-</record>
-<record>
-  <date>2013-03-07T10:26:48</date>
-  <millis>1362648408358</millis>
-  <sequence>4</sequence>
   <logger>Advanced</logger>
   <level>INFO</level>
   <class>ourownhttpserver.HTTPServer</class>

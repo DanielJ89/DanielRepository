@@ -34,6 +34,13 @@ public class Runner implements Runnable {
         this.clientSocket = clientSocket;
     }
 
+    /**
+     * Creates in/output streams
+     * Creates printwriter and scanner tools
+     * Scanner scans input from client
+     * Printer prints output to client (ServerTest) 
+     * 
+     */
     @Override
     public void run() {
         try {
@@ -48,7 +55,7 @@ public class Runner implements Runnable {
             final String method = fromClient.next();
             final String url = fromClient.next();
             String version = fromClient.next();
-            
+           
             ADVANCEDLOGGER.log(Level.INFO, "A Client has made a request");
             SIMPLELOGGER.log(Level.INFO, "A Client has made a request");
             try {
@@ -82,6 +89,7 @@ public class Runner implements Runnable {
         } catch (IOException ex) {
             Logger.getLogger(Runner.class.getName()).log(Level.SEVERE, "An IOExeption has occured", ex);
         }
+       
     }
 
     private static void copy(final InputStream input, final OutputStream output) throws IOException {
@@ -94,4 +102,5 @@ public class Runner implements Runnable {
             output.write(buffer, 0, bytesRead);
         }
     }
+    
 }

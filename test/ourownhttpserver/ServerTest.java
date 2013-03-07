@@ -48,7 +48,12 @@ public class ServerTest {
     assertEquals("HTTP/1.0 404 Not found: /doesNotExist.html", statusLine);
     client.close();
   }
-
+/**
+ * 
+ * @throws IOException 
+ * Should get a illigalargument exeption from runner which causes this test to pass .
+ * But it just keeps looping and never terminates.
+ */
     @Test
     public void testIllegalProtocol() throws IOException {
     final Socket client = new Socket(Host, HTTPServer.port);
