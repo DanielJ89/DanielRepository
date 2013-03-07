@@ -3,6 +3,7 @@ package ourownhttpserver;
 import java.io.*;
 import java.net.*;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Test;
 /**
  *
@@ -48,7 +49,7 @@ public class ServerTest {
     client.close();
   }
 
- // @Test
+    @Test
     public void testIllegalProtocol() throws IOException {
     final Socket client = new Socket(Host, HTTPServer.port);
 
@@ -62,7 +63,7 @@ public class ServerTest {
     client.close();
   }
 
- // @Test
+  //@Test
   public void testMissingProtocol() throws IOException {
     final Socket client = new Socket(Host, HTTPServer.port);
 

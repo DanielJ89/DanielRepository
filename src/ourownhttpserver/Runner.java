@@ -25,7 +25,7 @@ public class Runner implements Runnable {
     public static final String ROOT_CATALOG = "./src/data";
     public static int port = 8080;
     final private Socket clientSocket;
-   
+
     /**
      * ROOT_CATALOG is the place of our file port is the port number the server
      * listens
@@ -33,8 +33,7 @@ public class Runner implements Runnable {
     public Runner(final Socket clientSocket) {
         this.clientSocket = clientSocket;
     }
-    
-    
+
     @Override
     public void run() {
         try {
@@ -46,17 +45,21 @@ public class Runner implements Runnable {
             final Scanner fromClient = new Scanner(clientSocket.getInputStream());
 
             final MimetypesFileTypeMap mTFTMap = new MimetypesFileTypeMap(fis2);
-            
+
             final String method = fromClient.next();
             final String url = fromClient.next();
-            final String version = fromClient.next();
+            String version = fromClient.next();
+            
             ADVANCEDLOGGER.log(Level.INFO, "A Client has made a request");
             SIMPLELOGGER.log(Level.INFO, "A Client has made a request");
             try {
+                if (!"HTTP/1.0".equals(version)) {
+                    throw new IllegalArgumentException();
+                }
                 final FileInputStream fis = new FileInputStream(ROOT_CATALOG + url);
                 toClient.print("HTTP/1.0 200 FINE\r\n");
-                toClient.print("Content-Type: "+ mTFTMap.getContentType(url));
-                SIMPLELOGGER.log(Level.INFO,mTFTMap.getContentType(url));
+                toClient.print("Content-Type: " + mTFTMap.getContentType(url));
+                SIMPLELOGGER.log(Level.INFO, mTFTMap.getContentType(url));
                 // her skal content type være
                 toClient.print("\r\n");
                 toClient.flush();
@@ -68,6 +71,12 @@ public class Runner implements Runnable {
                 toClient.flush();
                 ADVANCEDLOGGER.log(Level.SEVERE, "The request caused a FileNotFoundException");
                 SIMPLELOGGER.log(Level.INFO, "The request caused a FileNotFoundException");
+            } catch (IllegalArgumentException ex) {
+                toClient.print("HTTP/1.0 400 Illegal request\r\n");
+                toClient.print("\r\n");
+                toClient.flush();
+                ADVANCEDLOGGER.log(Level.SEVERE, "Log test");
+                SIMPLELOGGER.log(Level.INFO, "Log test");
             }
 
             clientSocket.close();
