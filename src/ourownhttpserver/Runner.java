@@ -40,7 +40,6 @@ public class Runner implements Runnable {
             final FileInputStream fis2 = new FileInputStream("./src/data/mime.types.txt");
             final InputStream iStream = clientSocket.getInputStream();
             final OutputStream oSteam = clientSocket.getOutputStream();
-
             final PrintWriter toClient = new PrintWriter(clientSocket.getOutputStream());
             final Scanner fromClient = new Scanner(clientSocket.getInputStream());
 

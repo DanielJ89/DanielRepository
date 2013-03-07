@@ -46,13 +46,11 @@ public class HTTPServer {
             ADVANCEDLOGGER.log(Level.INFO, "new thread has been created");
             SIMPLELOGGER.log(Level.INFO, "new thread has been created");
             
-            
         }
          pool.shutdown();
-        
+         
   
     }
-    
     public static void shutdown(int closeport,ExecutorService pool){
         pool.shutdown();
         
